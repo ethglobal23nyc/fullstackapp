@@ -2,6 +2,7 @@ import { Card, Select, Text } from "@chakra-ui/react"
 import React, { Suspense, useState } from "react"
 import { Form, FormProps } from "src/core/components/Form"
 import { LabeledTextField } from "src/core/components/LabeledTextField"
+import { UploadFileIPFSBox } from "src/core/components/UploadFileIPFS"
 import { useCurrentUser } from "src/users/hooks/useCurrentUser"
 
 import { z } from "zod"
@@ -25,6 +26,8 @@ export function ContractForm<S extends z.ZodType<any, any>>(props: FormProps<S>)
           return <option key={membership.organization.id}>{membership.organization.name}</option>
         })}
       </Select>
+      <UploadFileIPFSBox />
+
       {/* TODO: display all the organization names in drop down menu, select the id.  */}
       {/* template: <__component__ name="__fieldName__" label="__Field_Name__" placeholder="__Field_Name__"  type="__inputType__" /> */}
     </Form>

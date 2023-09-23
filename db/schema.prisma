@@ -138,4 +138,5 @@ model Contract {
   denomination   Float         @default(0)
   currency       CurrencyType  @default(USDT)
   state          ContractState @default(CREATED)
+  model_cid      String?       @unique // IPFS CID
 }
