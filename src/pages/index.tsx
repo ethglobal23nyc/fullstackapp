@@ -1,4 +1,3 @@
-import { Suspense } from "react"
 import Link from "next/link"
 import Layout from "src/core/layouts/Layout"
 import { useCurrentUser } from "src/users/hooks/useCurrentUser"
@@ -7,7 +6,6 @@ import { useMutation } from "@blitzjs/rpc"
 import { Routes, BlitzPage } from "@blitzjs/next"
 import styles from "src/styles/Home.module.css"
 import { ImpersonateUserForm } from "src/auth/components/ImpersonateForm"
-import { ImpersonatingUserNotice } from "src/auth/components/ImpersonatingUserNotice"
 import ContractsPage from "./contracts"
 
 /*
@@ -38,6 +36,7 @@ const UserInfo = () => {
           User email: <code>{currentUser.email}</code>
         </div>
         <ImpersonateUserForm />
+        <ContractsPage />
       </>
     )
   } else {

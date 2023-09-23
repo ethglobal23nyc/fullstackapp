@@ -3,6 +3,7 @@ import { useMutation } from "@blitzjs/rpc"
 import impersonateUser, { ImpersonateUserInput } from "src/auth/mutations/impersonateUser"
 import { Form, FORM_ERROR } from "src/core/components/Form"
 import LabeledTextField from "src/core/components/LabeledTextField"
+import { ImpersonatingUserNotice } from "./ImpersonatingUserNotice"
 
 export const ImpersonateUserForm = () => {
   const [impersonateUserMutation] = useMutation(impersonateUser)
@@ -10,7 +11,7 @@ export const ImpersonateUserForm = () => {
   if (session.impersonatingFromUserId) {
     return (
       <div className="bg-yellow-400 px-2 py-1 text-center font-semibold">
-        Currently impersonating user {session.userId}
+        <ImpersonatingUserNotice />
       </div>
     )
   }
