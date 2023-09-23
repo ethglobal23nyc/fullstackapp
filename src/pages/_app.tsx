@@ -1,8 +1,12 @@
 import { ErrorFallbackProps, ErrorComponent, ErrorBoundary, AppProps } from "@blitzjs/next"
 import { AuthenticationError, AuthorizationError } from "blitz"
-import React from "react"
+import React, { Suspense } from "react"
 import { withBlitz } from "src/blitz-client"
-import 'src/styles/globals.css'
+import "src/styles/globals.css"
+import styles from "src/styles/Home.module.css"
+
+import { ChakraProvider } from "@chakra-ui/react"
+import AppLogo from "src/core/Logo"
 
 function RootErrorFallback({ error }: ErrorFallbackProps) {
   if (error instanceof AuthenticationError) {
@@ -27,9 +31,45 @@ function RootErrorFallback({ error }: ErrorFallbackProps) {
 function MyApp({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
   return (
-    <ErrorBoundary FallbackComponent={RootErrorFallback}>
-      {getLayout(<Component {...pageProps} />)}
-    </ErrorBoundary>
+    <ChakraProvider>
+      <ErrorBoundary FallbackComponent={RootErrorFallback}>
+        <div>
+          <div className={styles.globe} />
+          <div className={styles.toastContainer}>
+            <p>
+              <strong>Congrats!</strong> Your app is ready, including user sign-up and log-in.
+            </p>
+          </div>
+          <div className={styles.container}>
+            <main className={styles.main}>
+              <div className={styles.wrapper}>
+                <div className={styles.header}>
+                  <div className={styles.logo}>
+                    <AppLogo />
+                  </div>
+                  <div className={styles.buttonContainer}>
+                    <Suspense fallback="Loading...">
+                      {getLayout(<Component {...pageProps} />)}{" "}
+                    </Suspense>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+          <footer className={styles.footer}>
+            <span>Powered by</span>
+            <a
+              href="https://blitzjs.com?utm_source=blitz-new&utm_medium=app-template&utm_campaign=blitz-new"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.textLink}
+            >
+              Blitz.js
+            </a>
+          </footer>
+        </div>
+      </ErrorBoundary>
+    </ChakraProvider>
   )
 }
 

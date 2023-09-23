@@ -6,7 +6,7 @@ const Layout: BlitzLayout<{title?: string; children?: React.ReactNode}> = ({titl
   return (
     <>
       <Head>
-        <title>{title || "fullstackapp"}</title>
+        <title>{title || "DeML"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
