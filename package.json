@@ -27,7 +27,7 @@
     "@blitzjs/auth": "2.0.0-beta.33",
     "@blitzjs/next": "2.0.0-beta.33",
     "@blitzjs/rpc": "2.0.0-beta.33",
-    "@chakra-ui/react": "1.x",
+    "@chakra-ui/react": "2.8.1",
     "@emotion/react": "11.x",
     "@emotion/styled": "11.x",
     "@prisma/client": "4.13.0",
