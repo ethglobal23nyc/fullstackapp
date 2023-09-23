@@ -27,7 +27,7 @@ export default resolver.pipe(
       include: { memberships: true },
     })
 
-    await ctx.session.$create({ userId: user.id, role: user.role })
+    await ctx.session.$create({ userId: user.id, roles: [user.role] })
     return user
   }
 )

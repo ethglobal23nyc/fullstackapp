@@ -13,6 +13,14 @@ const ResetPasswordPage: BlitzPage = () => {
   const router = useRouter()
   const token = router.query.token?.toString()
   const [resetPasswordMutation, { isSuccess }] = useMutation(resetPassword)
+  if (!token) {
+    return (
+      <div>
+        <h2>Error</h2>
+        <p>No token provided.</p>
+      </div>
+    )
+  }
 
   return (
     <div>
@@ -32,7 +40,7 @@ const ResetPasswordPage: BlitzPage = () => {
           initialValues={{
             password: "",
             passwordConfirmation: "",
-            token,
+            token: token,
           }}
           onSubmit={async (values) => {
             try {

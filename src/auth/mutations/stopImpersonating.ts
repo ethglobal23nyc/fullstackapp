@@ -16,7 +16,7 @@ export default resolver.pipe(resolver.authorize(), async (_, ctx) => {
 
   await ctx.session.$create({
     userId: user.id,
-    role: user.role as Role,
+    roles: [user.role],
     // orgId: user.organizationId,
     impersonatingFromUserId: undefined,
   })

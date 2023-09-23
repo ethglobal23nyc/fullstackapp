@@ -41,9 +41,10 @@ export const EditContract = () => {
             initialValues={contract}
             onSubmit={async (values) => {
               try {
+                const { id, ...newValues } = values
                 const updated = await updateContractMutation({
-                  id: contract.id,
-                  ...values,
+                  id: id,
+                  ...newValues,
                 })
                 await setQueryData(updated)
                 await router.push(Routes.ShowContractPage({ contractId: updated.id }))
