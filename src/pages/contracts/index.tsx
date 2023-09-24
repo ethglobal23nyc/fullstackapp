@@ -6,6 +6,7 @@ import { usePaginatedQuery } from "@blitzjs/rpc"
 import { useRouter } from "next/router"
 import Layout from "src/core/layouts/Layout"
 import getContracts from "src/contracts/queries/getContracts"
+import { Button, ButtonGroup } from "@chakra-ui/react"
 
 const ITEMS_PER_PAGE = 100
 
@@ -31,12 +32,12 @@ export const ContractsList = () => {
         ))}
       </ul>
 
-      <button disabled={page === 0} onClick={goToPreviousPage}>
+      <Button colorScheme="gray" variant="outline" disabled={page === 0} onClick={goToPreviousPage}>
         Previous
-      </button>
-      <button disabled={!hasMore} onClick={goToNextPage}>
+      </Button>
+      <Button colorScheme="gray" variant="outline" disabled={!hasMore} onClick={goToNextPage}>
         Next
-      </button>
+      </Button>
     </div>
   )
 }
@@ -50,7 +51,9 @@ const ContractsPage = () => {
 
       <div>
         <p>
-          <Link href={Routes.NewContractPage()}>Create Contract</Link>
+          <Button style={{ marginTop: 20, marginBottom: 20 }}>
+            <Link href={Routes.NewContractPage()}>Create Contract</Link>
+          </Button>
         </p>
 
         <Suspense fallback={<div>Loading...</div>}>

@@ -1,4 +1,4 @@
-import { Card, Select, Text } from "@chakra-ui/react"
+import {  Select} from "@chakra-ui/react"
 import React, { Suspense, useState } from "react"
 import { Form, FormProps } from "src/core/components/Form"
 import { LabeledTextField } from "src/core/components/LabeledTextField"
@@ -22,9 +22,10 @@ export function ContractForm<S extends z.ZodType<any, any>>(props: FormProps<S>)
         type="number"
       />
       <Select placeholder="Organization Name">
-        {memberships?.map((membership) => {
-          return <option key={membership.organization.id}>{membership.organization.name}</option>
-        })}
+        {memberships &&
+          memberships.map((membership) => {
+            return <option key={membership.organization.id}>{membership.organization.name}</option>
+          })}
       </Select>
       {/* <UploadFileIPFSBox /> */}
 

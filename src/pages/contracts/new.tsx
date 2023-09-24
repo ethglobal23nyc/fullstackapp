@@ -7,6 +7,7 @@ import { CreateContractSchema } from "src/contracts/schemas"
 import createContract from "src/contracts/mutations/createContract"
 import { ContractForm, FORM_ERROR } from "src/contracts/components/ContractForm"
 import { Suspense } from "react"
+import { Button, Flex, Text } from "@chakra-ui/react"
 
 const NewContractPage = () => {
   const router = useRouter()
@@ -14,28 +15,34 @@ const NewContractPage = () => {
 
   return (
     <Layout title={"Create New Contract"}>
-      <h1>Create New Contract</h1>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ContractForm
-          submitText="Create Contract"
-          schema={CreateContractSchema}
-          // initialValues={{}}
-          onSubmit={async (values) => {
-            try {
-              const contract = await createContractMutation(values)
-              await router.push(Routes.ShowContractPage({ contractId: contract.id }))
-            } catch (error: any) {
-              console.error(error)
-              return {
-                [FORM_ERROR]: error.toString(),
+      <Flex flexDirection={"column"}>
+        <Text as="b" fontSize={"4xl"} style={{ marginBottom: "20px" }}>
+          Create New Contract
+        </Text>
+        <Suspense fallback={<div>Loading...</div>}>
+          <ContractForm
+            submitText="Create Contract"
+            schema={CreateContractSchema}
+            // initialValues={{}}
+            onSubmit={async (values) => {
+              try {
+                const contract = await createContractMutation(values)
+                await router.push(Routes.ShowContractPage({ contractId: contract.id }))
+              } catch (error: any) {
+                console.error(error)
+                return {
+                  [FORM_ERROR]: error.toString(),
+                }
               }
-            }
-          }}
-        />
-      </Suspense>
-      <p>
-        <Link href={Routes.ContractsPage()}>Contracts</Link>
-      </p>
+            }}
+          />
+        </Suspense>
+        <p>
+          <Button style={{ width: "100%", marginTop: 20 }}>
+            <Link href={Routes.ContractsPage()}>Contracts</Link>
+          </Button>
+        </p>
+      </Flex>
     </Layout>
   )
 }

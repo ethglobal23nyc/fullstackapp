@@ -7,6 +7,7 @@ import { Routes, BlitzPage } from "@blitzjs/next"
 import styles from "src/styles/Home.module.css"
 import { ImpersonateUserForm } from "src/auth/components/ImpersonateForm"
 import ContractsPage from "./contracts"
+import { Button, Flex, Spacer, Text } from "@chakra-ui/react"
 
 /*
  * This file is just for a pleasant getting started page for your new app.
@@ -20,23 +21,39 @@ const UserInfo = () => {
   if (currentUser) {
     return (
       <>
-        <button
-          className={styles.button}
-          onClick={async () => {
-            await logoutMutation()
-          }}
-        >
-          Logout
-        </button>
-        <div>
-          User id: <code>{currentUser.id}</code>
+        <Flex flexDirection="column">
+          <Flex>
+            <Text as="b" fontSize={"md"}>
+              User ID:
+            </Text>{" "}
+            <code>{currentUser.id}</code>
+          </Flex>
           <br />
-          User role: <code>{currentUser.role}</code>
+          <Flex>
+            <Text as="b" fontSize={"md"}>
+              User Role:
+            </Text>{" "}
+            <code>{currentUser.role}</code>
+          </Flex>
           <br />
-          User email: <code>{currentUser.email}</code>
-        </div>
-        <ImpersonateUserForm />
-        <ContractsPage />
+          <Flex>
+            <Text as="b" fontSize={"md"}>
+              User Email:
+            </Text>{" "}
+            <code>{currentUser.email}</code>
+          </Flex>
+          <ImpersonateUserForm />
+          <ContractsPage />
+          <Button
+            // className={styles.button}
+            style={{ marginTop: 20, marginBottom: 20 }}
+            onClick={async () => {
+              await logoutMutation()
+            }}
+          >
+            Logout
+          </Button>
+        </Flex>
       </>
     )
   } else {
