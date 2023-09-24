@@ -4,7 +4,7 @@ import { useField, useFormikContext, ErrorMessage } from "formik"
 import { Input } from "@chakra-ui/input"
 import { FormControl, FormLabel } from "@chakra-ui/form-control"
 
-export interface LabeledTextFieldProps extends ComponentPropsWithoutRef<typeof Input> {
+export interface LabeledTextFieldProps extends ComponentPropsWithoutRef<"input"> {
   /** Field name. */
   name: string
   /** Field label. */
@@ -23,7 +23,7 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
       <div {...outerProps}>
         <FormLabel>
           {label}
-          <Input {...input} disabled={isSubmitting} {...props} ref={ref} />
+          <Input {...input} disabled={isSubmitting} {...props} ref={ref} size="md" />
         </FormLabel>
         <ErrorMessage name={name}>
           {(msg) => (

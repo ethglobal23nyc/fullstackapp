@@ -22,11 +22,11 @@ export function ContractForm<S extends z.ZodType<any, any>>(props: FormProps<S>)
         type="number"
       />
       <Select placeholder="Organization Name">
-        {memberships.map((membership) => {
+        {memberships?.map((membership) => {
           return <option key={membership.organization.id}>{membership.organization.name}</option>
         })}
       </Select>
-      <UploadFileIPFSBox />
+      {/* <UploadFileIPFSBox /> */}
 
       {/* TODO: display all the organization names in drop down menu, select the id.  */}
       {/* template: <__component__ name="__fieldName__" label="__Field_Name__" placeholder="__Field_Name__"  type="__inputType__" /> */}

@@ -38,7 +38,13 @@ export const EditContract = () => {
           <ContractForm
             submitText="Update Contract"
             schema={UpdateContractSchema}
-            initialValues={contract}
+            initialValues={{
+              name: contract.name,
+              denomination: contract.denomination,
+              organizationId: contract.organizationId,
+              model_cid: contract.model_cid!,
+              id: contract.id,
+            }}
             onSubmit={async (values) => {
               try {
                 const { id, ...newValues } = values
